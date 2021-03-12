@@ -158,7 +158,13 @@ class TodoList
     select { |todo| !todo.done? }
   end
 
-  def mark_done
+  def mark_done(string)
+    each do |todo|
+      if todo.title == string
+        todo.done!
+        return
+      end
+    end
   end
 
   def mark_all_done
@@ -215,9 +221,15 @@ list << todo3    # same with todo3
 # p list.all_done       # New TodoList object with one todo (Clean room)
 
 # all done
-p list.all_not_done       # New TodoList object with all three
-list.mark_done_at(1)
-p list.all_not_done       # New TodoList object with two todos
+# p list.all_not_done       # New TodoList object with all three
+# list.mark_done_at(1)
+# p list.all_not_done       # New TodoList object with two todos
+
+# mark done
+puts list                     # prints out the list of three items, none done
+puts ""
+list.mark_done("Clean room")  # marks the "Clean room" todo item done
+puts list                     # prints out the list of three items, "Clean room" done
 
 # ---- Interrogating the list ---
 
