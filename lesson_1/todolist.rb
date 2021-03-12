@@ -121,7 +121,7 @@ class TodoList
 
   def to_s
     text = "---- #{title} ----\n"
-    text << @todos.map(&:to_s).join("\n")
+    text << todos.map(&:to_s).join("\n")
     text
   end
 
