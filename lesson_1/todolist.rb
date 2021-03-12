@@ -126,6 +126,17 @@ class TodoList
     end
   end
 
+  def each
+    counter = 0
+    
+    while counter < todos.size
+      yield(todos[counter]) if block_given?
+      counter += 1
+    end
+
+    todos.clone
+  end
+
   private
 
   attr_accessor :todos
@@ -150,6 +161,10 @@ list << todo1    # adds todo1 to the end of list, returns list
 list << todo2    # same with todo2
 list << todo3    # same with todo3
 # list << 1        # raises TypeError with message "Can only add Todo objects"
+
+list.each do |todo|
+  puts todo                   # calls Todo#to_s
+end
 
 # ---- Interrogating the list ---
 
@@ -207,7 +222,7 @@ list << todo3    # same with todo3
 # ---- Outputting the list -----
 
 # to_s
-list.to_s                      # returns string representation of the list
+# list.to_s                      # returns string representation of the list
 
 # ---- Today's Todos ----
 # [ ] Buy milk
