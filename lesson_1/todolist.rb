@@ -134,6 +134,14 @@ class TodoList
     self
   end
 
+  def select
+    result = []
+    todos.each do |todo|
+      result << todo if yield(todo)
+    end
+
+    result
+  end
   private
 
   attr_accessor :todos
@@ -159,9 +167,18 @@ list << todo2    # same with todo2
 list << todo3    # same with todo3
 # list << 1        # raises TypeError with message "Can only add Todo objects"
 
-list.each do |todo|
-  puts todo                   # calls Todo#to_s
-end
+# ---- Testing custom methods that take a block ----
+
+# each
+# list.each do |todo|
+#   puts todo                   # calls Todo#to_s
+# end
+
+# select
+todo1.done!
+
+results = list.select { |todo| todo.done? }
+puts results.inspect
 
 # ---- Interrogating the list ---
 
