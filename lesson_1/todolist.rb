@@ -135,7 +135,7 @@ class TodoList
   end
 
   def select
-    new_list = TodoList.new("New TodoList")
+    new_list = TodoList.new(title)
     todos.each do |todo|
       new_list << todo if yield(todo)
     end
