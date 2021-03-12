@@ -142,6 +142,29 @@ class TodoList
 
     new_list
   end
+
+  def find_by_title(string)
+    each do |todo|
+      return todo if todo.title == string
+    end
+    nil
+  end
+
+  def all_done
+  end
+
+  def all_not_done
+  end
+
+  def mark_done
+  end
+
+  def mark_all_done
+  end
+
+  def mark_all_undone
+  end
+
   private
 
   attr_accessor :todos
@@ -175,10 +198,14 @@ list << todo3    # same with todo3
 # end
 
 # select
-todo1.done!
+# todo1.done!
 
-results = list.select { |todo| todo.done? }
-puts results.inspect
+# results = list.select { |todo| todo.done? }
+# puts results.inspect
+
+# find by title
+p list.find_by_title("Buy milk")           #
+p list.find_by_title("Buy pizza")  # nil
 
 # ---- Interrogating the list ---
 
