@@ -127,14 +127,11 @@ class TodoList
   end
 
   def each
-    counter = 0
-    
-    while counter < todos.size
-      yield(todos[counter]) if block_given?
-      counter += 1
+    todos.each do |todo|
+      yield(todo) if block_given?
     end
 
-    todos.clone
+    self
   end
 
   private
