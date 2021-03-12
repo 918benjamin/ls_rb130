@@ -167,9 +167,11 @@ class TodoList
   end
 
   def mark_all_done
+    done!
   end
 
   def mark_all_undone
+    each { |todo| todo.undone! }
   end
 
   private
@@ -225,10 +227,19 @@ list << todo3    # same with todo3
 # p list.all_not_done       # New TodoList object with two todos
 
 # mark done
-puts list                     # prints out the list of three items, none done
+# puts list                     # prints out the list of three items, none done
+# puts ""
+# list.mark_done("Clean room")  # marks the "Clean room" todo item done
+# puts list                     # prints out the list of three items, "Clean room" done
+
+# mark all done and undone
+puts list
 puts ""
-list.mark_done("Clean room")  # marks the "Clean room" todo item done
-puts list                     # prints out the list of three items, "Clean room" done
+list.mark_all_done
+puts list
+puts ""
+list.mark_all_undone
+puts list
 
 # ---- Interrogating the list ---
 
