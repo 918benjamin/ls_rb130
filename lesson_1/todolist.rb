@@ -151,6 +151,7 @@ class TodoList
   end
 
   def all_done
+    select { |todo| todo.done? }
   end
 
   def all_not_done
@@ -204,8 +205,13 @@ list << todo3    # same with todo3
 # puts results.inspect
 
 # find by title
-p list.find_by_title("Buy milk")           #
-p list.find_by_title("Buy pizza")  # nil
+# p list.find_by_title("Buy milk")   # todo object with title "Buy milk"
+# p list.find_by_title("Buy pizza")  # nil
+
+# all done
+p list.all_done       # New TodoList object with no todos
+list.mark_done_at(1)
+p list.all_done       # New TodoList object with one todo (Clean room)
 
 # ---- Interrogating the list ---
 
