@@ -135,12 +135,12 @@ class TodoList
   end
 
   def select
-    result = []
+    new_list = TodoList.new("New TodoList")
     todos.each do |todo|
-      result << todo if yield(todo)
+      new_list << todo if yield(todo)
     end
 
-    result
+    new_list
   end
   private
 
