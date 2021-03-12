@@ -1,14 +1,27 @@
 # My initial solution
-def reduce(array, default_acc=0)
+# def reduce(array, default_acc=0)
+#   counter = 0
+#   result = default_acc
+
+#   while counter < array.size
+#     result = yield(result, array[counter])
+#     counter += 1
+#   end
+
+#   result
+# end
+
+# LS Solution 
+def reduce(array, default=0)
   counter = 0
-  result = default_acc
+  accumulator = default
 
   while counter < array.size
-    result = yield(result, array[counter])
+    accumulator = yield(accumulator, array[counter])
     counter += 1
   end
 
-  result
+  accumulator
 end
 
 # Method invocation examples
