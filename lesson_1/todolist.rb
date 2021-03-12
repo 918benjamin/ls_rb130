@@ -142,11 +142,17 @@ class TodoList
     new_list
   end
 
-  def find_by_title(string)
-    each do |todo|
-      return todo if todo.title == string
-    end
-    nil
+  # My implementation
+  # def find_by_title(string)
+  #   each do |todo|
+  #     return todo if todo.title == string
+  #   end
+  #   nil
+  # end
+
+  # LS solution
+  def find_by_title(title)
+    select { |todo| todo.title == title }.first
   end
 
   def all_done
@@ -157,13 +163,19 @@ class TodoList
     select { |todo| !todo.done? }
   end
 
-  def mark_done(string)
-    each do |todo|
-      if todo.title == string
-        todo.done!
-        return
-      end
-    end
+  # My attempt
+  # def mark_done(string)
+  #   each do |todo|
+  #     if todo.title == string
+  #       todo.done!
+  #       return
+  #     end
+  #   end
+  # end
+
+  # LS Solution
+  def mark_done(title)
+    find_by_title(title) && find_by_title(title).done!
   end
 
   def mark_all_done
@@ -221,25 +233,25 @@ list << todo3    # same with todo3
 # list.mark_done_at(1)
 # p list.all_done       # New TodoList object with one todo (Clean room)
 
-# all done
+# all not done
 # p list.all_not_done       # New TodoList object with all three
 # list.mark_done_at(1)
 # p list.all_not_done       # New TodoList object with two todos
 
 # mark done
-# puts list                     # prints out the list of three items, none done
-# puts ""
-# list.mark_done("Clean room")  # marks the "Clean room" todo item done
-# puts list                     # prints out the list of three items, "Clean room" done
+puts list                     # prints out the list of three items, none done
+puts ""
+list.mark_done("Clean room")  # marks the "Clean room" todo item done
+puts list                     # prints out the list of three items, "Clean room" done
 
 # mark all done and undone
-puts list
-puts ""
-list.mark_all_done
-puts list
-puts ""
-list.mark_all_undone
-puts list
+# puts list
+# puts ""
+# list.mark_all_done
+# puts list
+# puts ""
+# list.mark_all_undone
+# puts list
 
 # ---- Interrogating the list ---
 
