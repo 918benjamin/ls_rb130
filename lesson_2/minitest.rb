@@ -3,6 +3,7 @@ require 'minitest/autorun'
 # MiniTest::Reporters.use!
 
 def square_root(value)
+  Math.sqrt(value)
 end
 
 class SquareRootTest < MiniTest::Test
