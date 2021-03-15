@@ -82,4 +82,18 @@ class TodoListTest < MiniTest::Test
     assert_equal(false, @list.item_at(2).done?)
     assert_equal(false, @list.item_at(0).done?)
   end
+
+  def test_mark_undone_at
+    assert_raises(IndexError) { @list.mark_undone_at(100) }
+    assert_equal(false, @list.item_at(1).done?)
+    @list.mark_done_at(1)
+    assert_equal(true, @list.item_at(1).done?)
+    assert_equal(false, @list.item_at(0).done?)
+    assert_equal(false, @list.item_at(2).done?)
+    @list.mark_undone_at(1)
+    assert_equal(false, @list.item_at(1).done?)
+    assert_equal(false, @list.item_at(0).done?)
+    assert_equal(false, @list.item_at(2).done?)
+  end
+
 end
