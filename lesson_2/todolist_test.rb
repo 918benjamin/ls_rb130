@@ -152,4 +152,8 @@ class TodoListTest < MiniTest::Test
     @list.each { |todo| arr << todo }
     assert_equal(@todos, arr)
   end
+
+  def test_each_returns_original_object
+    assert_equal(@list, @list.each { |todo| "nothing" })
+  end
 end
