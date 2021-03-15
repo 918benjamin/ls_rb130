@@ -166,4 +166,36 @@ class TodoListTest < MiniTest::Test
     assert_equal([@todo1, @todo3], selection.to_a)
     assert_instance_of(TodoList, selection)
   end
+
+  def test_find_by_title
+    assert_equal(@todo2, @list.find_by_title("Clean room"))
+  end
+
+  def test_all_done
+    assert_equal([], @list.all_done.to_a)
+    @list.done!
+    assert_equal([@todo1, @todo2, @todo3], @list.all_done.to_a)
+  end
+
+  def test_all_not_done
+    assert_equal([@todo1, @todo2, @todo3], @list.all_not_done.to_a)
+    @list.done!
+    assert_equal([], @list.all_not_done.to_a)
+    @list.mark_undone_at(1)
+    assert_equal([@todo2], @list.all_not_done.to_a)
+    @list.mark_all_undone
+    assert_equal([@todo1, @todo2, @todo3], @list.all_not_done.to_a)
+  end
+
+  def test_mark_done
+    assert_equal(false, @list.item_at(1).done?)
+    @list.mark_done("Clean room")
+    assert_equal(true, @list.item_at(1).done?)
+  end
+
+  def test_mark_all_done
+    assert_equal(false, @list.done?)
+    @list.mark_all_done
+    assert_equal(true, @list.done?)
+  end
 end
