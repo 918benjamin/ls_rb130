@@ -29,7 +29,7 @@ class Todo
   def ==(otherTodo)
     title == otherTodo.title &&
       description == otherTodo.description &&
-      done = otherTodo.done
+      done == otherTodo.done
   end
 end
 
