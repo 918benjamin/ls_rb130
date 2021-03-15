@@ -96,4 +96,12 @@ class TodoListTest < MiniTest::Test
     assert_equal(false, @list.item_at(2).done?)
   end
 
+  def test_done!
+    assert_equal(false, @list.done?)
+    @list.done!
+    assert_equal(true, @list.done?)
+    assert_equal(true, @list.item_at(0).done?)
+    assert_equal(true, @list.item_at(1).done?)
+    assert_equal(true, @list.item_at(2).done?)
+  end
 end
