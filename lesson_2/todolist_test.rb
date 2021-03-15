@@ -25,4 +25,12 @@ class TodoListTest < MiniTest::Test
   def test_size
     assert_equal(3, @list.size)
   end
+
+  def test_first
+    assert_equal(@todo1, @list.first) # LS uses assert_equal but I'm getting an error
+  end
+
+  def test_last
+    assert_equal(@todo3, @list.last)
+  end
 end
