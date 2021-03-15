@@ -43,4 +43,10 @@ class TodoListTest < MiniTest::Test
     assert_equal(@todo3, @list.pop)
     assert_equal([@todo1, @todo2], @list.to_a)
   end
+
+  def test_pop
+    assert_equal(false, @list.done?)
+    @list.done!
+    assert_equal(true, @list.done?)
+  end
 end
