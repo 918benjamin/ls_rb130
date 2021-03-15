@@ -122,4 +122,16 @@ class TodoListTest < MiniTest::Test
     
     assert_equal(output, @list.to_s)
   end
+
+  def test_to_s_marked_done
+    @list.mark_done_at(1)
+    assert_equal(true, @list.item_at(1).done?)
+    output = <<~OUTPUT.chomp
+    ---- Today's Todos ----
+    [ ] Buy milk
+    [X] Clean room
+    [ ] Go to gym
+    OUTPUT
+    assert_equal(output, @list.to_s)
+  end
 end
