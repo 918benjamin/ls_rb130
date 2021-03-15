@@ -61,4 +61,11 @@ class TodoListTest < MiniTest::Test
     @todos << new_todo
     assert_equal(@todos, @list.to_a)
   end
+
+  def test_add
+    new_todo = Todo.new("New todo")
+    @list.add(new_todo)
+    @todos << new_todo
+    assert_equal(@todos, @list.to_a)
+  end
 end
