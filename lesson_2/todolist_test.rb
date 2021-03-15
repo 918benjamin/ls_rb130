@@ -156,4 +156,12 @@ class TodoListTest < MiniTest::Test
   def test_each_returns_original_object
     assert_equal(@list, @list.each { |todo| "nothing" })
   end
+
+  def test_select
+    @list.done!
+    @list.mark_undone_at(1)
+    selection = @list.select { |todo| todo.done? }
+    assert_equal([@todo1, @todo3], selection.to_a)
+    assert_instance_of(TodoList, selection)
+  end
 end
