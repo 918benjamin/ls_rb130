@@ -33,4 +33,14 @@ class TodoListTest < MiniTest::Test
   def test_last
     assert_equal(@todo3, @list.last)
   end
+
+  def test_shift
+    assert_equal(@todo1, @list.shift)
+    assert_equal([@todo2, @todo3], @list.to_a)
+  end
+
+  def test_pop
+    assert_equal(@todo3, @list.pop)
+    assert_equal([@todo1, @todo2], @list.to_a)
+  end
 end
