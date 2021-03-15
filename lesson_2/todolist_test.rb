@@ -146,4 +146,10 @@ class TodoListTest < MiniTest::Test
     @list.done!
     assert_equal(output, @list.to_s)
   end
+
+  def test_each
+    arr = []
+    @list.each { |todo| arr << todo }
+    assert_equal(@todos, arr)
+  end
 end
